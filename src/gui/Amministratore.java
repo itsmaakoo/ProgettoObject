@@ -11,6 +11,7 @@ public class Amministratore extends JFrame {
     private JButton assegnaGate;
     private JButton assegnaBagaglio;
     private JButton visualizzaSmarrimento;
+    private JButton logoutButton;
 
     public Amministratore() {
 
@@ -31,6 +32,10 @@ public class Amministratore extends JFrame {
         c.gridx = 1;
         c.gridy = 0;
         panel1.add(inserisciVolo, c);
+
+        inserisciVolo.addActionListener(e ->{
+            new InserisciVolo();
+        });
 
 
 
@@ -63,6 +68,17 @@ public class Amministratore extends JFrame {
         c.gridy = 5;
         panel1.add(visualizzaSmarrimento, c);
 
+        logoutButton = new JButton("Logout");
+        logoutButton.setForeground(Color.RED);
+        c.gridx = 1;
+        c.gridy = 6;
+        panel1.add(logoutButton, c);
+
+        logoutButton.addActionListener(e -> {
+            new LoginFrame();
+            dispose();
+        });
+
         add(panel1);
 
         setSize(800, 500);
@@ -73,4 +89,22 @@ public class Amministratore extends JFrame {
     public static void main(String[] args) {
         new Amministratore();
     }
+
+    public JButton getInserisciVolo() {
+        return inserisciVolo;
+    }
+    public JButton getModificaVolo() {
+        return modificaVolo;
+    }
+    public JButton getAssegnaGate() {
+        return assegnaGate;
+
+    }
+    public JButton getAssegnaBagaglio() {
+        return assegnaBagaglio;
+    }
+    public JButton getVisualizzaSmarrimento() {
+        return visualizzaSmarrimento;
+    }
+
 }
