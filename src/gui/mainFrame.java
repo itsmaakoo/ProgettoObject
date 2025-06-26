@@ -23,7 +23,7 @@ public class mainFrame extends JFrame{
 
         controller = new Controller(this);
 
-        Login loginPanel = new Login(mainFrame.this, controller);
+        LoginFrame loginPanel = new LoginFrame();
         UtenteGenericoPanel userPanel = new UtenteGenericoPanel();
         Amministratore adminPanel = new Amministratore();
 

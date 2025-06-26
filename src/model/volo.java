@@ -1,3 +1,5 @@
+package model;
+
 public class volo {
 
     private String codice;
@@ -27,6 +29,7 @@ public class volo {
     public void setCodice(String codice) {
         this.codice = codice;
     }
+
 
     public void getCompagniaAerea(){}
 
@@ -69,4 +72,10 @@ public class volo {
     public void setRitardo(int ritardo) {
             this.ritardo = ritardo;
     }
+
+
+    public String getNumero() {
+        return "";
+    }
+    public void setNumero(String numero) {}
 }

@@ -1,3 +1,6 @@
+package model;
+
+
 public class Amministratore {
     private String login;
     private String password;

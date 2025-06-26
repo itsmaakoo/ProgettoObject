@@ -1,3 +1,5 @@
+package model;
+
 public class utenteGenerico {
     private String nome;
     private String cognome;

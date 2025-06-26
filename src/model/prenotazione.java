@@ -1,4 +1,4 @@
-package org.example;
+package model;
 
 public class prenotazione {
     private int num_biglietto;
@@ -9,6 +9,10 @@ public class prenotazione {
         this.num_biglietto = num_biglietto;
         this.posto_assegnato = posto_assegnato;
         this.stato_prenotazione = stato_prenotazione;
+    }
+
+    public static String getBiglietto() {
+        return null;
     }
 
     public int getNum_biglietto() {

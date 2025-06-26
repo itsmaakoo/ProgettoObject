@@ -1,13 +1,13 @@
-package org.example;
+package model;
 
 public class bagaglio {
-    private int codice;
+    private static int codice;
     private stato_bagaglio stato;
 
     bagaglio(int codice, String stato) {
         this.codice = codice;
     }
-    public int getCodice() {
+    public static int getCodice() {
         return codice;
     }
 
