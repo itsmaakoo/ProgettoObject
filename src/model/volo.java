@@ -1,70 +1,57 @@
-package model;
+package gui;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class volo {
 
-    private String codice;
-    private String compagniaAerea;
-    private String origine;
+    private int id;
     private String destinazione;
-    private String orarioPrevisto;
+    private Date dataPartenza;
     private StatoDelVolo stato;
-    private String data;
+    private Date dataArrivo;
     private int ritardo;
 
     public volo(String codice, String compagniaAerea, String origine, String destinazione, String orarioPrevisto, StatoDelVolo stato, String data, int ritardo ){
-        this.codice = codice;
-        this.compagniaAerea = compagniaAerea;
-        this.origine = origine;
+
+        this.id = id;
         this.destinazione = destinazione;
-        this.orarioPrevisto = orarioPrevisto;
-        this.stato = stato;
-        this.data = data;
+        this.dataPartenza = dataPartenza;
+        this.dataArrivo = dataArrivo;
         this.ritardo = ritardo;
 
     }
-    public String getCodice(){
-        return codice;
+    public int getId(){
+        return id;
     }
 
-    public void setCodice(String codice) {
-        this.codice = codice;
+    public void setId(int id) {
+        this.id = id;
     }
 
 
-    public void getCompagniaAerea(){}
-
-    public void setCompagniaAerea(String compagniaAerea) {
-        this.compagniaAerea = compagniaAerea;
-    }
-
-    public void getOrigine(){}
-
-    public void setOrigine(String origine) {
-        this.origine = origine;
-    }
-
-    public void getDestinazione(){}
+    public String getDestinazione(){return destinazione;}
 
     public void setDestinazione(String destinazione) {
         this.destinazione = destinazione;
     }
 
-    public void getOrarioPrevisto(){}
+    public Date getDataPartenza(){return dataPartenza;}
 
-    public void setOrarioPrevisto(String orarioPrevisto) {
-        this.orarioPrevisto = orarioPrevisto;
+    public void setDataPartenza(Date dataPartenza) {this.dataPartenza = dataPartenza;}
+
+
+
+    public Date getDataArrivo(){ return dataArrivo;}
+
+    public void setDataArrivo(String data) {
+        this.dataArrivo = dataArrivo;
     }
 
     public void getStato(){}
 
     public void setStato(StatoDelVolo stato) {
         this.stato = stato;
-    }
-
-    public void getData(){}
-
-    public void setData(String data) {
-        this.data = data;
     }
 
     public void getRitardo(){}
@@ -74,8 +61,13 @@ public class volo {
     }
 
 
-    public String getNumero() {
-        return "";
+    @Override
+    public String toString() {
+        if (destinazione == null || dataPartenza == null) {
+            return "Volo non trovato";
+        }
+        return destinazione + " " + new SimpleDateFormat("dd/MM/yyyy").format(dataPartenza);
     }
-    public void setNumero(String numero) {}
+
+
 }
