@@ -1,9 +1,10 @@
 package gui;
 
+import model.volo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
-import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 //DA AGGIUNGERE IL CONTROLLO SULLE DATE
@@ -32,10 +33,8 @@ public class InserisciVolo extends JFrame {
         panel1.add(destinazioneField, c);
 
         JLabel dataPartenza = new JLabel("Data e orario partenza");
-        JSpinner dataPSpinner = new JSpinner(new SpinnerDateModel());
         JSpinner dataPartenzaSpinner = new JSpinner(new SpinnerDateModel());
-        JSpinner.DateEditor dataPEditor = new JSpinner.DateEditor(dataPSpinner, "dd-MM-yyyy");
-        dataPSpinner.setEditor(dataPEditor);
+        dataPartenzaSpinner.setEditor(new JSpinner.DateEditor(dataPartenzaSpinner, "dd-MM-yyyy"));
         c.gridx = 0;
         c.gridy = 1;
         panel1.add(dataPartenza, c);
@@ -44,10 +43,8 @@ public class InserisciVolo extends JFrame {
 
 
         JLabel dataArrivo = new JLabel("Data e orario arrivo destinazione");
-        JSpinner dataASpinner = new JSpinner(new SpinnerDateModel());
         JSpinner dataArrivoSpinner = new JSpinner(new SpinnerDateModel());
-        JSpinner.DateEditor dataAEditor = new JSpinner.DateEditor(dataASpinner, "dd-MM-yyyy");
-        dataASpinner.setEditor(dataAEditor);
+        dataArrivoSpinner.setEditor(new JSpinner.DateEditor(dataArrivoSpinner, "dd-MM-yyyy"));
         c.gridx = 0;
         c.gridy = 2;
         panel1.add(dataArrivo, c);
@@ -66,11 +63,17 @@ public class InserisciVolo extends JFrame {
 
         confermaButton.addActionListener(e -> {
             String destinazione =destinazioneField.getText();
-            Date partenza=(Date)dataPSpinner.getValue();
-            Date arrivo=(Date)dataPartenzaSpinner.getValue();
+            Date partenza=(Date)dataPartenzaSpinner.getValue();
+            Date arrivo=(Date)dataArrivoSpinner.getValue();
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
+            volo nuovoVolo = new volo(destinazione, partenza, arrivo, "In orario", "");
+
+            volo.archivio.add(nuovoVolo);
+
+
+            JOptionPane.showMessageDialog(this, "Volo inserito"+nuovoVolo);
             String messaggio = "Destinazione:"+destinazione +"\n"
                     + "Data da parte: "+formatter.format(partenza)+"\n"
                     + "Data da arrivo: "+formatter.format(arrivo)+"\n";

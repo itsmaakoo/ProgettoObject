@@ -10,6 +10,7 @@ public class UtenteGenericoPanel extends JFrame {
     private JButton statoVoloButton;
     private JButton segnalaBagaglioSmarritoButton;
     private JButton logoutButton;
+    private JButton aggiungiBagaglio;
 
     public UtenteGenericoPanel() {
         super("Utente Generico");
@@ -28,6 +29,10 @@ public class UtenteGenericoPanel extends JFrame {
         c.anchor = GridBagConstraints.CENTER;
         panel1.add(prenotaVoloButton, c);
 
+        prenotaVoloButton.addActionListener(e -> {
+            new PrenotaVolo();
+        });
+
         statoVoloButton = new JButton("Stato volo");
         c.gridx = 0;
         c.gridy = 2;
@@ -36,13 +41,26 @@ public class UtenteGenericoPanel extends JFrame {
         c.anchor = GridBagConstraints.CENTER;
         panel1.add(statoVoloButton, c);
 
-        segnalaBagaglioSmarritoButton = new JButton("Segnala bagaglio smarrito");
+        statoVoloButton.addActionListener(e -> {
+            new statoVolo();
+        });
+
+        aggiungiBagaglio = new JButton("Aggiungi Bagaglio");
         c.gridx = 0;
         c.gridy = 3;
+        c.gridwidth = 3;
+        aggiungiBagaglio.setPreferredSize(buttonSize);
+        c.anchor = GridBagConstraints.CENTER;
+        panel1.add(aggiungiBagaglio, c);
+
+        segnalaBagaglioSmarritoButton = new JButton("Segnala bagaglio smarrito");
+        c.gridx = 0;
+        c.gridy = 4;
         c.gridwidth = 3;
         segnalaBagaglioSmarritoButton.setPreferredSize(buttonSize);
         c.anchor = GridBagConstraints.CENTER;
         panel1.add(segnalaBagaglioSmarritoButton, c);
+
 
         logoutButton = new JButton("Logout");
         logoutButton.setForeground(Color.RED);

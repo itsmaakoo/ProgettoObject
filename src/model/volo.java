@@ -1,34 +1,36 @@
-package gui;
+package model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class volo {
 
-    private int id;
     private String destinazione;
     private Date dataPartenza;
-    private StatoDelVolo stato;
     private Date dataArrivo;
-    private int ritardo;
+    private String stato;
+    private String gate;
 
-    public volo(String codice, String compagniaAerea, String origine, String destinazione, String orarioPrevisto, StatoDelVolo stato, String data, int ritardo ){
+    private List<bagaglio> b = new ArrayList<bagaglio>();
 
-        this.id = id;
+    public void aggiungiBagaglio(bagaglio bagaglio) {
+        b.add(bagaglio);
+    }
+
+
+    public volo( String destinazione,Date dataPartenza, Date dataArrivo, String stato, String gate ) {
+
         this.destinazione = destinazione;
         this.dataPartenza = dataPartenza;
         this.dataArrivo = dataArrivo;
-        this.ritardo = ritardo;
+        this.stato = stato;
+        this.gate = gate;
+
+
 
     }
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     public String getDestinazione(){return destinazione;}
 
@@ -40,34 +42,36 @@ public class volo {
 
     public void setDataPartenza(Date dataPartenza) {this.dataPartenza = dataPartenza;}
 
-
-
     public Date getDataArrivo(){ return dataArrivo;}
 
-    public void setDataArrivo(String data) {
+    public void setDataArrivo(Date dataArrivo) {
         this.dataArrivo = dataArrivo;
     }
 
-    public void getStato(){}
+    public String getStato(){return stato;}
 
-    public void setStato(StatoDelVolo stato) {
-        this.stato = stato;
-    }
+    public void setStato(String stato) {this.stato = stato;}
 
-    public void getRitardo(){}
-
-    public void setRitardo(int ritardo) {
-            this.ritardo = ritardo;
-    }
-
-
+    public String getGate(){return gate;}
+    public void setGate(String gate) {this.gate = gate;}
+    
     @Override
     public String toString() {
-        if (destinazione == null || dataPartenza == null) {
-            return "Volo non trovato";
+        return destinazione + " " + new SimpleDateFormat("dd/MM/yyyy").format(dataPartenza) + "Stato: " +stato;
         }
-        return destinazione + " " + new SimpleDateFormat("dd/MM/yyyy").format(dataPartenza);
+       public static java.util.List<volo> archivio= new java.util.ArrayList<>();
+
+
+
+    // DA MODIFICARE PERCHè SE TOLGO MI DA ERRORE
+    public String getCodice() {
+        return null;
     }
 
-
+    public String getNumero() {
+        return null;
+    }
 }
+
+
+

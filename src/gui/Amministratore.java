@@ -44,6 +44,10 @@ public class Amministratore extends JFrame {
         c.gridy = 2;
         panel1.add(modificaVolo, c);
 
+        modificaVolo.addActionListener(e ->{
+            new ModificaVolo();
+        });
+
 
 
         assegnaGate = new JButton("Assegna Gate");
@@ -52,6 +56,10 @@ public class Amministratore extends JFrame {
         c.gridx = 1;
         c.gridy = 3;
         panel1.add(assegnaGate, c);
+
+        assegnaGate.addActionListener(e ->{
+            new assegnaGate();
+        });
 
 
 
