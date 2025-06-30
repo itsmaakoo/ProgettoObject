@@ -34,7 +34,7 @@ public class aggiungiBagaglio extends JFrame {
             String bagaglio = campoBagaglio.getText().trim();
 
             if(selezionato !=null && !bagaglio.isEmpty()) {
-                
+
             }
         });
     }
