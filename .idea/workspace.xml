@@ -50,6 +50,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -118,7 +119,7 @@
       <workItem from="1751201994082" duration="4030000" />
       <workItem from="1751289333028" duration="650000" />
       <workItem from="1751290370743" duration="3144000" />
-      <workItem from="1751893959212" duration="596000" />
+      <workItem from="1751893959212" duration="1106000" />
     </task>
     <task id="LOCAL-00001" summary="inserico Amministratore Gui">
       <option name="closed" value="true" />
