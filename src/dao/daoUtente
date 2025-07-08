@@ -1,0 +1,11 @@
+package dao;
+
+import db.connessioneDb;
+import model.utente;
+
+import java.sql.*;
+import java.until.ArrayList;
+import java.util.List;
+
+public class UtenteDao{
+}
