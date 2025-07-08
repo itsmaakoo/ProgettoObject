@@ -1,5 +1,6 @@
 package dao;
 
+import db.connessioneDb;
 import model.Passeggero;
 
 import java.sql.*;
