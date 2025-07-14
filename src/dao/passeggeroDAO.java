@@ -1,6 +1,5 @@
 package dao;
 
-import db.connessioneDb;
 import model.Passeggero;
 
 import java.sql.*;
@@ -10,17 +9,22 @@ import java.util.List;
 public class passeggeroDAO {
     private Connection connessione;
 
-    public passeggeroDAO(Connection connessione) {
+    public passeggeroDAO(Connection conn) {
         this.connessione = connessione;
     }
-    public void salvaPasseggero(Passeggero passeggero) throws SQLException{
-        String sql = "INSERT INTO passeggeri (nome, cognome, codiceFiscale) VALUES (?,?,?)";
+    public int salvaPasseggero(Passeggero passeggero) throws SQLException{
+        String sql = "INSERT INTO passeggeri (nome, cognome, codiceFiscale) VALUES (?,?,?) RETURNING id";
         try(PreparedStatement stmt = connessione.prepareStatement(sql)){
             stmt.setString(1, passeggero.getNome());
             stmt.setString(2, passeggero.getCognome());
             stmt.setString(3, passeggero.getCodiceFiscale());
             stmt.executeUpdate();
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+                return rs.getInt("id");
+            }
         }
+        return 0;
     }
     public Passeggero trovaPerCodiceFiscale(String codiceFiscale ) throws SQLException{
         String sql = "SELECT * FROM passeggeri WHERE codiceFiscale = ?";
@@ -29,6 +33,7 @@ public class passeggeroDAO {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 return new Passeggero(
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cognome"),
                         rs.getString("codiceFiscale")
@@ -44,6 +49,7 @@ public class passeggeroDAO {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 listaPasseggero.add(new Passeggero(
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cognome"),
                         rs.getString("codiceFiscale")

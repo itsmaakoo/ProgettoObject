@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class UtenteGenericoPanel extends JFrame {
 
-
     private JPanel panel1;
     private JButton prenotaVoloButton;
     private JButton statoVoloButton;
@@ -31,7 +30,8 @@ public class UtenteGenericoPanel extends JFrame {
         panel1.add(prenotaVoloButton, c);
 
         prenotaVoloButton.addActionListener(e -> {
-            new PrenotaVolo();
+            PrenotaVolo pr = new PrenotaVolo();
+            pr.setVisible(true);
         });
 
         statoVoloButton = new JButton("Stato volo");
@@ -55,7 +55,7 @@ public class UtenteGenericoPanel extends JFrame {
         panel1.add(aggiungiBagaglio, c);
 
         aggiungiBagaglio.addActionListener(e -> {
-            new aggiungiBagaglio();
+                new aggiungiBagaglio();
         });
 
         segnalaBagaglioSmarritoButton = new JButton("Segnala bagaglio smarrito");

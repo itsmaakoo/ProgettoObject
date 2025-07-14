@@ -1,18 +1,26 @@
 package model;
 
-public class passeggero {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Passeggero {
+    private int id;
     private String nome;
     private String cognome;
-    private String numDoc;
+    private String codiceFiscale;
 
-    public passeggero(String nome, String cognome, String numDoc){
-
+    public Passeggero(String nome, String cognome, String codiceFiscale){
         this.nome = nome;
         this.cognome = cognome;
-        this.numDoc = numDoc;
+        this.codiceFiscale = codiceFiscale;
     }
 
+    public Passeggero(int id,String nome, String cognome, String codiceFiscale){
+        this.id=id;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.codiceFiscale = codiceFiscale;
+    }
     public String getNome() {
         return nome;
     }
@@ -25,11 +33,21 @@ public class passeggero {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-    public String getNumDoc() {
-        return numDoc;
+    public String getCodiceFiscale() {
+        return codiceFiscale;
     }
-    public void setNumDoc(String numDoc) {
-        this.numDoc = numDoc;
+    public void setCodiceFiscale(String codiceFiscale){
+        this.codiceFiscale = codiceFiscale;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return nome+" "+cognome+" "+codiceFiscale;
+    }
 }

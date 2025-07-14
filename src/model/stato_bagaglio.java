@@ -1,5 +1,5 @@
 package model;
 
 public enum stato_bagaglio {
-     imbarcato, ritirabile, smarrito, ;
+    imbarcato, ritirabile, smarrito, registrato;
 }
