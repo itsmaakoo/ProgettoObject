@@ -17,10 +17,10 @@ public class BagaglioDAO {
         this.connessione = connessione;
     }
     public void add(Bagaglio b, int prenotazioneId) throws SQLException{
-        String sql = "INSERT INTO bagagli (codiceTracciamento, prenotazioneId, stato, note) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO bagagli (codice, prenotazioneId, stato, descrizione) VALUES (?,?,?,?)";
         try(PreparedStatement stmt = connessione.prepareStatement(sql)){
             stmt.setInt(1, b.getCodice());
-            stmt.setInt(2, prenotazioneId);
+            stmt.setInt(2, b.getPrenotazioneId());
             stmt.setString(3, b.getStato().name());
             stmt.setString(4, b.getDescrizione());
             stmt.executeUpdate();
@@ -34,8 +34,9 @@ public class BagaglioDAO {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Bagaglio b = new Bagaglio(
-                        rs.getInt("codiceTracciamento"),
-                        rs.getString("note")
+                        prenotazioneId,
+                        rs.getInt("codice"),
+                        rs.getString("descrizione")
                 );
                 b.setStato(stato_bagaglio.valueOf(rs.getString("stato")));
                 bagagli.add(b);
@@ -65,8 +66,9 @@ public class BagaglioDAO {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 Bagaglio b = new Bagaglio(
+                        rs.getInt("prenotazioneId"),
                         rs.getInt("codiceTraccaimento"),
-                        rs.getString("note")
+                        rs.getString("descrizione")
                 );
                 b.setStato(stato_bagaglio.valueOf(rs.getString("stato")));
                 return b;

@@ -10,7 +10,7 @@ public class utenteGenerico {
         this.nome = nome;
         this.cognome = cognome;
         this.codiceFiscale = codiceFiscale;
-}
+    }
 
     public String getNome() {
         return nome;
@@ -35,18 +35,4 @@ public class utenteGenerico {
     public void setcodiceFiscale(String codiceFiscale) {
         this.codiceFiscale = codiceFiscale;
     }
-
-    public void prenotaVolo(volo volo) {
-        System.out.println("volo" + volo.getCodice());
-    }
-
-    public void cercaPrenotazione(volo volo) {
-        System.out.println("volo" + volo.getCodice());
-    }
-
-    public void segnalaBagaglio(volo volo) {
-        System.out.println("volo" + volo.getCodice());
-    }
 }
-
-

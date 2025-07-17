@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.border.AbstractBorder;
 import java.awt.*;
 
 public class LoginFrame extends JFrame {
@@ -19,78 +20,112 @@ public class LoginFrame extends JFrame {
         // usata come layout manager e contiene vari campi come gridx, gridy che possiamo modificare come vogliamo per poi aggiungere
         // tutto in panel1, il campo insets serve ad aggiungere padding attorno al componente.
 
-        panel1 = new JPanel(new GridBagLayout());
+        panel1 = new JPanel(new GridBagLayout()) {
+            protected void paintComponent(Graphics g) {
+                super.paintComponents(g);
+                Graphics2D g2d = (Graphics2D) g;
+                GradientPaint gp = new GradientPaint(0, 0, Color.WHITE, 0, getHeight(), new Color(0xDCEFFF));
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        panel1.setOpaque(true);
+
         panel1.setBackground(Color.WHITE);
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(20, 20, 20, 20);
-
+        c.insets = new Insets(10, 20, 10, 20);
 
         // ho dato colore e font alla scritta username, ed ho deciso dove posizionarla in questo caso colonna 0 riga 0
         //poichè il GBL divide lo spazio in una griglia invisibile e ci permette di posizionare i componenti in modo preciso.
 
         username = new JLabel("Username:");
-        username.setForeground(Color.BLACK);
+        username.setForeground(new Color(33, 33, 33));
         username.setFont(new Font("Arial", Font.BOLD, 16));
         c.gridx = 0;
         c.gridy = 0;
+        c.gridwidth = 2;
+        c.anchor = GridBagConstraints.WEST;
         panel1.add(username, c);
 
         // il 20 in parentesi significa che sta creando un campo di testo che può mostrare fino a 20 caratteri visibili senza scorrere
         // come sopra ho posizionato il campo nella propria colonna e riga.
 
-        textField1 = new JTextField(20);
-        c.gridx = 1;
-        c.gridy = 0;
+        textField1 = new JTextField(15);
+        textField1.setPreferredSize(new Dimension(200, 35));
+        textField1.setBorder(new roundedBorder(12));
+        c.gridy = 1;
         panel1.add(textField1, c);
 
         // stessa cosa di username
 
         password = new JLabel("password:");
-        password.setForeground(Color.BLACK);
+        password.setForeground(new Color(33, 33, 33));
         password.setFont(new Font("Arial", Font.BOLD, 16));
-        c.gridx = 0;
-        c.gridy = 1;
+        c.gridy = 2;
         panel1.add(password, c);
 
         // stessa cosa di textField1
 
-        passwordField1 = new JPasswordField(20);
-        c.gridx = 1;
-        c.gridy = 1;
+        passwordField1 = new JPasswordField(15);
+        passwordField1.setPreferredSize(new Dimension(200, 35));
+        passwordField1.setBorder(new roundedBorder(12));
+        c.gridy = 3;
         panel1.add(passwordField1, c);
 
         // qui ho aggiunto gridwidth ci dice quante colonne deve occupare il bottone, e anchor va a centrare il componente
         // nell'area che occupa in questo caso il bottone è centrato ed occupa 2 colonne.
 
         LButton = new JButton("LOGIN");
-        LButton.setBackground(Color.BLACK);
-        c.gridx = 1;
-        c.gridy = 2;
-        c.gridwidth = 2;
-        c.anchor = GridBagConstraints.CENTER;
+        LButton.setPreferredSize(new Dimension(200, 35));
+        LButton.setBackground(Color.white);
+        c.gridy = 4;
         panel1.add(LButton, c);
 
         add(panel1);
 
-        LButton.addActionListener(e ->{
+        LButton.addActionListener(e -> {
             String username = textField1.getText();
             String password = String.valueOf(passwordField1.getPassword());
 
             if (username.equals("admin") && password.equals("admin123")) {
                 new Amministratore();
                 dispose();
-            }else if(username.equals("utente") && password.equals("utente123")) {
+            } else if (username.equals("utente") && password.equals("utente123")) {
                 new UtenteGenericoPanel();
                 dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Errore nella chiusura della password");
             }
         });
 
-        setSize(1150, 700);
+        setSize(800, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    static class roundedBorder extends AbstractBorder {
+        private final int radius;
+
+        public roundedBorder(int radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setColor(Color.GRAY);
+            g2.setStroke(new BasicStroke(1.2f));
+            g2.drawRoundRect(x,y,width -1,height -1,radius,radius);
+            g2.dispose();
+        }
+        public Insets getBorderInsets(Component c) {
+            return new Insets(8, 12, 8, 12);
+        }
+        public Insets getBorderInsets(Component c, Insets insets) {
+            insets.set(8, 12, 8, 12);
+            return insets;
+            }
     }
 
     public JTextField getUsernameField(){
