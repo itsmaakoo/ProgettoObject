@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package db;
 
 import java.sql.Connection;
@@ -10,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnessioneDB {
-    private static final String URL = "jdbc:postgresql://192.168.1.50:5432/aereoportoNapoliDB";
+    private static final String URL = "jdbc:postgresql://127.0.0.1:5432/aereoportoNapoliDB";
     private static final String USER = "postgres";
     private static final String PASSWORD = "Zr8v!pDq21@LmXeK";
 
@@ -19,8 +14,7 @@ public class ConnessioneDB {
 
         try {
             Class.forName("org.postgresql.Driver");
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://192.168.1.50:5432/aereoportoNapoliDB", "postgres", "Zr8v!pDq21@LmXeK");
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connessione al DB riuscita!");
         } catch (ClassNotFoundException e) {
             System.err.println("Driver PostgreSQL non trovato. Aggiungi il JAR al progetto!");

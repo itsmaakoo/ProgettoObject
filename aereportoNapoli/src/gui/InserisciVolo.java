@@ -82,7 +82,7 @@ public class InserisciVolo extends JFrame {
             return;
         }
 
-        Volo nuovoVolo = new Volo(destinazione, partenza, arrivo, "in orario", "");
+        Volo nuovoVolo = new Volo(destinazione, partenza, arrivo, "programmato", null);
 
         try (Connection conn = ConnessioneDB.getConnection()) {
             if (conn != null) {
